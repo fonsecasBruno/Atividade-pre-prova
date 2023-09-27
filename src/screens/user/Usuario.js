@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Card, IconButton } from 'react-native-paper'
+import { Card, IconButton, Avatar, Text } from 'react-native-paper'
 import Api from '../../services/Api'
 
 export default function Usuario(props) {
 
-    const [usuario, setUsuarios] = useState([])
+    const navigation = props.navigation
+    const [usuario, setUsuario] = useState([])
     const usuarioId = props.route.params.id
 
     console.log(props)
@@ -15,7 +16,7 @@ export default function Usuario(props) {
         Api.get('/users/' + usuarioId)
         .then(response => {
 
-            setUsuarios(response.data)
+            setUsuario(response.data)
 
         })
 
@@ -31,10 +32,10 @@ export default function Usuario(props) {
         navigation.navigate('Post', usuario)
       }}>
 
-      <Card.title
+      <Card.Title
         title={usuario?.username}
         subtitle={usuario?.email}
-        left={() => <Avatar.Image size={48} source={{uri: item.image}}/>}
+        left={() => <Avatar.Image size={48} source={{uri: usuario?.image}}/>}
         right={()=> <IconButton icon='chevron-right'/>}
       />
 

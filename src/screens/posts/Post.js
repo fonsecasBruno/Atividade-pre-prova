@@ -1,5 +1,5 @@
-import { StyleSheet, View } from 'react-native'
-import React, { useEffect } from 'react'
+import { StyleSheet, View, FlatList } from 'react-native'
+import React, { useEffect, useState} from 'react'
 import { Avatar, Card, Divider, Text} from 'react-native-paper'
 
 import Api from '../../services/Api'
